@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, House} from "lucide-react";
 
 const NAV_LINKS = [
     { label: "Experience", href: "#experience" },
@@ -24,7 +24,7 @@ export function Navbar() {
                     href="#"
                     className="text-2xl font-bold tracking-tighter text-primary"
                 >
-                    📁
+                    <House size={24}/>
                 </a>
 
                 {/* --- Desktop Links --- */}
