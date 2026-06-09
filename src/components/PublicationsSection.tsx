@@ -7,7 +7,7 @@ type Props = {
 
 export function PublicationsSection({ publications }: Props) {
     return (
-        <section id="publications" className="py-0 space-y-12">
+        <section id="publications" className="py-24 space-y-12">
             {/* ── Section header ── */}
             <div className="max-w-2xl mx-auto px-6 md:px-12 space-y-3 flex flex-col items-center text-center">
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">

@@ -15,8 +15,8 @@ export function EducationSkillsSection({ education, skills }: Props) {
 
   return (
     <section
-      id="education"
-      className="max-w-[1200px] mx-auto px-6 md:px-12 py-24"
+      id="skills"
+      className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 space-y-10" 
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
 
@@ -83,7 +83,7 @@ export function EducationSkillsSection({ education, skills }: Props) {
 
         {/* ══ RIGHT COLUMN: Skills ════════════════════════════════════════ */}
         {/* Invisible anchor so the "Skills" nav link works */}
-        <div id="skills" className="space-y-10">
+        <div className="space-y-10">
           <div className="space-y-3 flex flex-col items-center text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               Technical Skills
