@@ -32,7 +32,6 @@ export type Project = {
     repo_url: string | null;
     demo_url: string | null;
     tech_stacks: string | null;
-    show: boolean | null;
 };
 
 export type Publication = {
@@ -44,5 +43,19 @@ export type Publication = {
   description: string | null;
   repo_url: string | null;
   published_date: string | null;
-  show: boolean | null;
+};
+
+export type Education = {
+  education_name: string;      
+  education_category: string; 
+  start_date: string | null;
+  end_date: string | null;
+  grade: number | null;
+  description: string | null;
+  logo_url: string | null;
+};
+
+export type Skill = {
+  skill_name: string;
+  category: string | null;
 };
