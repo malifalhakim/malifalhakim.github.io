@@ -1,0 +1,86 @@
+"use client"
+
+import { useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import {
+    Card, CardContent, CardHeader,
+    CardTitle, CardDescription, CardAction,
+} from "@/components/ui/card"
+import { formatMonthYear, TYPE_LABEL, TYPE_BADGE_CLASS } from "@/lib/experiences";
+import type { Experience } from "@/types/profile";
+
+const INITIAL_COUNT = 5;
+
+export function ExperiencesList({ experiences }: { experiences: Experience[] }) {
+    const [showAll, setShowAll] = useState(false);
+
+    const visible = showAll ? experiences : experiences.slice(0, INITIAL_COUNT);
+    const hasMore = experiences.length > INITIAL_COUNT;
+
+    return (
+    <div className="space-y-4">
+      {visible.map((exp) => {
+        const startLabel = formatMonthYear(exp.start_date, "—");
+        const endLabel   = formatMonthYear(exp.end_date, "Present");
+        const badgeClass = TYPE_BADGE_CLASS[exp.experience_type ?? "other"];
+        const typeLabel  = TYPE_LABEL[exp.experience_type ?? "other"];
+
+        return (
+          <Card key={exp.experience_name} className="transition-colors hover:ring-foreground/20">
+            <CardHeader>
+              <div className="flex items-start gap-4">
+                {exp.picture_url && (
+                  <div className="relative size-10 shrink-0 rounded-md overflow-hidden border border-border bg-muted mt-0.5">
+                    <Image
+                      src={exp.picture_url}
+                      alt={`${exp.experience_name} logo`}
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <CardTitle className="text-base font-semibold text-foreground">
+                    {exp.experience_name}
+                  </CardTitle>
+                  <CardDescription className="mt-0.5">{exp.location}</CardDescription>
+                </div>
+              </div>
+              <CardAction>
+                <div className="flex flex-col items-end gap-2">
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
+                    {startLabel} — {endLabel}
+                  </span>
+                </div>
+              </CardAction>
+            </CardHeader>
+            {exp.description && (
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
+              </CardContent>
+            )}
+          </Card>
+        );
+      })}
+      {/* Show more / less button */}
+      {hasMore && (
+        <div className="flex justify-center pt-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-muted-foreground hover:text-foreground gap-2"
+            onClick={() => setShowAll((prev) => !prev)}
+          >
+            {showAll ? (
+              <><ChevronUp size={14} /> Show less</>
+            ) : (
+              <><ChevronDown size={14} /> Show all {experiences.length} experiences</>
+            )}
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+}
