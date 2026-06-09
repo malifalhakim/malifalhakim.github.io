@@ -7,7 +7,7 @@ export function ExperiencesSection({ experiences }: { experiences: Experience[] 
   const sorted = sortExperiences(experiences);
 
   return (
-    <section id="experience" className="py-4 space-y-12">
+    <section id="experience" className="py-0 space-y-12">
       {/* Section header */}
       <div className="max-w-2xl mx-auto px-6 md:px-12 space-y-3 flex flex-col items-center text-center">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">

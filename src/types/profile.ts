@@ -20,3 +20,17 @@ export type Experience = {
     description: string | null;
     picture_url: string | null;
 }
+
+export type Project = {
+    project_id: number;
+    project_name: string;
+    project_type: "ML" | "SE" | null;
+    tags: string | null;
+    preview_url: string | null;
+    project_date: string | null;
+    description: string | null;
+    repo_url: string | null;
+    demo_url: string | null;
+    tech_stacks: string | null;
+    show: boolean | null;
+};
