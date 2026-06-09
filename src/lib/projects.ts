@@ -20,3 +20,9 @@ export const PROJECT_TYPE_CLASS: Record<string, string> = {
   ML: "bg-violet-950/60 text-violet-300 border-violet-800/50",
   SE: "bg-blue-950/60 text-blue-300 border-blue-800/50",
 };
+
+/** Extract year from an ISO date string */
+export function formatYear(dateStr: string | null): string {
+  if (!dateStr) return "";
+  return new Date(dateStr).getFullYear().toString();
+}

@@ -1,4 +1,3 @@
-// src/components/ExperiencesSection.tsx
 import { ExperiencesList } from "@/components/ExperiencesList";
 import { sortExperiences } from "@/lib/experiences";
 import type { Experience } from "@/types/profile";
@@ -17,7 +16,7 @@ export function ExperiencesSection({ experiences }: { experiences: Experience[] 
       </div>
 
       {/* Cards — narrower, centered */}
-      <div className="max-w-2xl mx-auto px-6 md:px-0">
+      <div className="max-w-3xl mx-auto px-6 md:px-0">
         <ExperiencesList experiences={sorted} />
       </div>
     </section>

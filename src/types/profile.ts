@@ -34,3 +34,15 @@ export type Project = {
     tech_stacks: string | null;
     show: boolean | null;
 };
+
+export type Publication = {
+  publication_id: number;
+  title: string;
+  authors: string | null;
+  published_in: string | null;
+  paper_url: string | null;
+  description: string | null;
+  repo_url: string | null;
+  published_date: string | null;
+  show: boolean | null;
+};
