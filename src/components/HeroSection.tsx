@@ -88,7 +88,7 @@ export function HeroSection({ profile }: Props) {
                                 src={profile.profile_img_url}
                                 alt={`${profile.name} profile photo`}
                                 fill
-                                className="object-cover grayscale contrast-125"
+                                className="object-cover contrast-125"
                                 priority
                             />
                         </div>

@@ -8,3 +8,15 @@ export type Profile = {
     linkedin_url: string | null;
     github_url: string | null;
 };
+
+export type ExperienceType = "research" | "work" | "course" | "other";
+
+export type Experience = {
+    experience_name: string;
+    experience_type: ExperienceType | null;
+    location: string;
+    start_date: string | null;
+    end_date: string | null;
+    description: string | null;
+    picture_url: string | null;
+}
