@@ -59,3 +59,20 @@ export type Skill = {
   skill_name: string;
   category: string | null;
 };
+
+export type Award = {
+  award_name: string;
+  giver: string;
+  date_given: string | null;
+  description: string | null;
+  logo_url: string | null;
+};
+
+export type Volunteering = {
+  volunteer_name: string;
+  start_date: string;
+  end_date: string | null;
+  organization: string | null;
+  description: string | null;
+  logo_url: string | null;
+};
