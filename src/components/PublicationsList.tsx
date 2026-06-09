@@ -10,21 +10,48 @@ const INITIAL_COUNT = 5;
 
 export function PublicationsList({ publications }: {publications: Publication[]}){
     const [showAll, setShowAll] = useState(false);
+    const [isCollapsing, setIsCollapsing] = useState(false);
 
-    const visible = showAll? publications : publications.slice(0, INITIAL_COUNT);
+    const visible = showAll ? publications : publications.slice(0, INITIAL_COUNT);
     const hasMore = publications.length > INITIAL_COUNT;
+
+    function handleToggle() {
+        if (showAll) {
+            setIsCollapsing(true);
+            setTimeout(() => {
+                setShowAll(false);
+                setIsCollapsing(false);
+            }, 380);
+        } else {
+            setShowAll(true);
+        }
+    }
 
     return (
         <div className="space-y-4">
-            {visible.map((pub) => {
+            {visible.map((pub, index) => {
             const year = formatYear(pub.published_date);
             const venueLabel = [pub.published_in, year].filter(Boolean).join(" • ");
+
+            const isNew     = showAll && !isCollapsing && index >= INITIAL_COUNT;
+            const isExiting = isCollapsing && index >= INITIAL_COUNT;
 
             return (
                 <div
                 key={pub.publication_id}
-                className="group p-6 border border-border rounded-xl hover:bg-muted transition-all duration-200"
+                className={
+                    isExiting
+                        ? "animate-out fade-out-0 slide-out-to-bottom-4 duration-300 fill-mode-both"
+                        : isNew
+                        ? "animate-in fade-in-0 slide-in-from-bottom-4 duration-500 fill-mode-both"
+                        : undefined
+                }
+                style={isNew
+                    ? { animationDelay: `${(index - INITIAL_COUNT) * 60}ms` }
+                    : undefined
+                }
                 >
+                <div className="group p-6 border border-border rounded-xl hover:bg-muted transition-all duration-200">
                 <div className="flex items-start justify-between gap-6">
                     {/* ── Left: text content ── */}
                     <div className="space-y-1.5 min-w-0">
@@ -96,17 +123,18 @@ export function PublicationsList({ publications }: {publications: Publication[]}
                     </div>
                 </div>
                 </div>
-                
+                </div>
             );
             })}
+
             {/* Show more / less button */}
             {hasMore && (
                 <div className="flex justify-center pt-2">
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="text-muted-foreground hover:text-foreground gap-2"
-                        onClick={() => setShowAll((prev) => !prev)}
+                        className="text-muted-foreground hover:text-foreground gap-2 transition-all duration-200 active:scale-95"
+                        onClick={handleToggle}
                     >
                         {showAll ? (
                         <><ChevronUp size={14} /> Show less</>
@@ -119,4 +147,3 @@ export function PublicationsList({ publications }: {publications: Publication[]}
         </div>
     )
 }
-
