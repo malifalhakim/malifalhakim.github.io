@@ -7,6 +7,7 @@ import { type Profile, type Experience, type Project, type Publication, type Edu
 import { PublicationsSection } from "@/components/PublicationsSection";
 import { EducationSkillsSection } from "@/components/EducationSkillsSection";
 import { AwardsSection } from "@/components/AwardsSection";
+import { Footer } from "@/components/Footer";
 
 export const dynamic = "force-dynamic";
 
@@ -39,6 +40,7 @@ export default async function Home() {
         <EducationSkillsSection education={educationResult.data ?? []} skills={skillsResult.data ?? []}/>
         <AwardsSection awards={awardsResult.data ?? []} volunteering={volunteerResults.data ?? []}/>
       </main>
+      <Footer profile={profileResult.data}/>
     </>
   )
 }
