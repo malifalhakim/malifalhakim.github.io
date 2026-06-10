@@ -1,17 +1,23 @@
 "use client"
 
 import { useState } from "react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Microscope, Briefcase, BookSearch, Layers } from "lucide-react";
 import {
     Card, CardContent, CardHeader,
     CardTitle, CardDescription, CardAction,
 } from "@/components/ui/card"
 import { formatMonthYear, TYPE_LABEL, TYPE_BADGE_CLASS } from "@/lib/experiences";
-import type { Experience } from "@/types/profile";
+import type { Experience, ExperienceType } from "@/types/profile";
 
 const INITIAL_COUNT = 5;
+
+const TYPE_ICON: Record<string, React.ReactNode> = {
+  research: <Microscope   size={18} />,
+  work:     <Briefcase    size={18} />,
+  course:   <BookSearch  size={18} />,
+  other:    <Layers       size={18} />,
+};
 
 export function ExperiencesList({ experiences }: { experiences: Experience[] }) {
     const [showAll, setShowAll] = useState(false);
@@ -61,16 +67,10 @@ export function ExperiencesList({ experiences }: { experiences: Experience[] }) 
             <Card className="transition-colors hover:ring-foreground/20">
               <CardHeader>
                 <div className="flex items-start gap-4">
-                  {exp.picture_url && (
-                    <div className="relative size-10 shrink-0 rounded-md overflow-hidden border border-border bg-muted mt-0.5">
-                      <Image
-                        src={exp.picture_url}
-                        alt={`${exp.experience_name} logo`}
-                        fill
-                        className="object-contain p-1"
-                      />
-                    </div>
-                  )}
+                  {/* Type icon */}
+                  <div className="size-10 shrink-0 rounded-md border border-border bg-muted flex items-center justify-center text-muted-foreground mt-0.5">
+                    {TYPE_ICON[exp.experience_type ?? "other"] ?? <Layers size={18} />}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <CardTitle className="text-base font-semibold text-foreground">
                       {exp.experience_name}

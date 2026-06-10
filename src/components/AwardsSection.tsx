@@ -1,6 +1,5 @@
 // src/components/AwardsSection.tsx
-import Image from "next/image";
-import { Trophy, Heart } from "lucide-react";
+import { Trophy, HandHeart } from "lucide-react";
 import { mergeAndSort, KIND_BADGE } from "@/lib/awards";
 import type { Award, Volunteering } from "@/types/profile";
 
@@ -9,10 +8,9 @@ type Props = {
   volunteering: Volunteering[];
 };
 
-// Fallback icons when no logo is available
-const FALLBACK_ICON = {
-  award:     <Trophy size={28} className="text-primary" />,
-  volunteer: <Heart  size={28} className="text-primary" />,
+const KIND_ICON: Record<string, React.ReactNode> = {
+  award:     <Trophy    size={22} className="text-primary" />,
+  volunteer: <HandHeart size={22} className="text-primary" />,
 };
 
 export function AwardsSection({ awards, volunteering }: Props) {
@@ -48,21 +46,10 @@ export function AwardsSection({ awards, volunteering }: Props) {
                 {badge.label}
               </span>
 
-              {/* ── Logo or fallback icon ── */}
-              {item.logo_url ? (
-                <div className="relative size-12 rounded-lg overflow-hidden border border-border bg-muted">
-                  <Image
-                    src={item.logo_url}
-                    alt={`${item.name} logo`}
-                    fill
-                    className="object-contain p-1.5"
-                  />
-                </div>
-              ) : (
-                <div className="size-12 rounded-lg border border-border bg-muted flex items-center justify-center">
-                  {FALLBACK_ICON[item.kind]}
-                </div>
-              )}
+              {/* Kind icon — always shown */}
+              <div className="size-12 rounded-lg border border-border bg-muted flex items-center justify-center">
+                {KIND_ICON[item.kind]}
+              </div>
 
               {/* ── Text content ── */}
               <div className="space-y-1.5 pr-16">

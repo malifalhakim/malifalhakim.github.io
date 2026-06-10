@@ -13,7 +13,7 @@ export function ProjectCard({ project }: { project: Project}) {
     return (
     <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden hover:ring-1 hover:ring-foreground/20 transition-all duration-200">
       {/* ── Thumbnail ── */}
-      <div className="relative aspect-video w-full overflow-hidden bg-muted">
+      {/* <div className="relative aspect-video w-full overflow-hidden bg-muted">
         {project.preview_url ? (
           <Image
             src={project.preview_url}
@@ -26,16 +26,16 @@ export function ProjectCard({ project }: { project: Project}) {
           <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 text-xs uppercase tracking-widest">
             No preview
           </div>
-        )}
+        )} */}
 
         {/* Type badge over image */}
-        {project.project_type && (
+        {/* {project.project_type && (
           <span className={`absolute top-2 right-2 text-[10px] font-bold uppercase tracking-wider
                             px-2 py-0.5 rounded border backdrop-blur-sm ${typeClass}`}>
             {project.project_type}
           </span>
         )}
-      </div>
+      </div> */}
 
       {/* ── Body ── */}
       <div className="flex flex-col flex-1 gap-3 p-4">
@@ -54,7 +54,7 @@ export function ProjectCard({ project }: { project: Project}) {
 
         {/* Description — 2-line clamp */}
         {project.description && (
-          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
             {project.description}
           </p>
         )}

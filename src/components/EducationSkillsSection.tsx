@@ -1,8 +1,20 @@
 // src/components/EducationSkillsSection.tsx
-import Image from "next/image";
+import { GraduationCap, BookOpen, School } from "lucide-react";
 import { sortEducation, formatEduDateRange } from "@/lib/education";
 import { groupSkills } from "@/lib/skills";
 import type { Education, Skill } from "@/types/profile";
+
+// Icon by degree category — case-insensitive prefix match
+function getEduIcon(category: string) {
+  const c = category.toLowerCase();
+  if (c.includes("master") || c.includes("phd") || c.includes("doctor")) {
+    return <GraduationCap size={18} />;
+  }
+  if (c.includes("bachelor") || c.includes("undergrad") || c.includes("s1") || c.includes("s2")) {
+    return <BookOpen size={18} />;
+  }
+  return <School size={18} />;
+}
 
 type Props = {
   education: Education[];
@@ -36,17 +48,10 @@ export function EducationSkillsSection({ education, skills }: Props) {
               return (
                 <div key={edu.education_name} className="flex items-start gap-4">
 
-                  {/* School logo */}
-                  {edu.logo_url && (
-                    <div className="relative size-10 shrink-0 rounded-md overflow-hidden border border-border bg-muted mt-1">
-                      <Image
-                        src={edu.logo_url}
-                        alt={`${edu.education_name} logo`}
-                        fill
-                        className="object-contain p-1"
-                      />
-                    </div>
-                  )}
+                  {/* Category icon */}
+                  <div className="size-10 shrink-0 rounded-md border border-border bg-muted flex items-center justify-center text-muted-foreground mt-1">
+                    {getEduIcon(edu.education_category)}
+                  </div>
 
                   {/* Text content */}
                   <div className="space-y-1">
