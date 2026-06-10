@@ -123,6 +123,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Subtle dot grid texture */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 3px);
+    background-size: 32px 32px;
   }
   html {
     @apply font-sans;
@@ -138,3 +141,23 @@
     display: none;             /* Chrome / Safari / Opera */
   }
 }
+
+/* ─── Background orb drift animations ─────────────────────────────────────── */
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0px,   0px)  scale(1);    }
+  33%       { transform: translate(50px, -40px) scale(1.06); }
+  66%       { transform: translate(-30px, 25px) scale(0.94); }
+}
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0px,   0px)  scale(1);    }
+  33%       { transform: translate(-60px, 35px) scale(0.95); }
+  66%       { transform: translate(40px, -50px) scale(1.05); }
+}
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0px, 0px)   scale(1);    }
+  50%       { transform: translate(30px, 45px) scale(1.08); }
+}
+
+.bg-orb-1 { animation: orb-drift-1 28s ease-in-out infinite; }
+.bg-orb-2 { animation: orb-drift-2 35s ease-in-out infinite; }
+.bg-orb-3 { animation: orb-drift-3 22s ease-in-out infinite; }

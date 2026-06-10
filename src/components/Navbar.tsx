@@ -71,7 +71,7 @@ export function Navbar() {
                         </a>
                     ))}
 
-                    <Button variant="default" size="sm" className="w-full font-bold">
+                    <Button variant="default" size="sm" className="w-full font-bold" onClick={() => window.location.href = "mailto:malifalhakim11@gmail.com"}>
                         Contact
                     </Button>
                 </div>
