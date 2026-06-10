@@ -32,6 +32,7 @@ export type Project = {
     repo_url: string | null;
     demo_url: string | null;
     tech_stacks: string | null;
+    pinned: boolean | null;
 };
 
 export type Publication = {

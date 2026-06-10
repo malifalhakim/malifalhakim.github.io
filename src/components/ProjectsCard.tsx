@@ -40,8 +40,8 @@ export function ProjectCard({ project }: { project: Project}) {
       {/* ── Body ── */}
       <div className="flex flex-col flex-1 gap-3 p-4">
         {/* Title + date */}
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="text-sm font-semibold text-foreground leading-snug">
+        <div className="min-h-[2.5rem] flex items-start justify-between gap-2">
+          <h3 className="text-sm font-semibold text-foreground leading-snug line-clamp-2">
             {project.project_name}
           </h3>
           {dateLabel && (
@@ -52,12 +52,14 @@ export function ProjectCard({ project }: { project: Project}) {
           )}
         </div>
 
-        {/* Description — 2-line clamp */}
-        {project.description && (
-          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-            {project.description}
-          </p>
-        )}
+        {/* Description */}
+        <div className="min-h-[5rem]">
+          {project.description && (
+            <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+              {project.description}
+            </p>
+          )}
+        </div>
 
         {/* Tags */}
         {tags.length > 0 && (

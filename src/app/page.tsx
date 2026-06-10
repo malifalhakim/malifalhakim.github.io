@@ -17,7 +17,7 @@ export default async function Home() {
   const [profileResult, experiencesResult, projectsResult, publicationsResult, educationResult, skillsResult, awardsResult, volunteerResults] = await Promise.all([
     supabase.from("profile").select("*").single<Profile>(),
     supabase.from("experiences").select("*").returns<Experience[]>(),
-    supabase.from("projects").select("*").order("project_id", { ascending: true}).returns<Project[]>(),
+    supabase.from("projects").select("*").order("project_date", { ascending: false }).returns<Project[]>(),
     supabase.from("publications").select("*").order("published_date", {ascending:false}).returns<Publication[]>(),
     supabase.from("education").select("*").returns<Education[]>(),
     supabase.from("skills").select("skill_name, category").returns<Skill[]>(),

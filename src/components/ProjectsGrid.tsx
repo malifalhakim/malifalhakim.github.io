@@ -14,8 +14,6 @@ import { LayoutGrid } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectsCard";
 import type { Project } from "@/types/profile";
 
-const INITIAL_COUNT = 6;
-
 type Props = {
     projects: Project[];
 }
@@ -24,8 +22,8 @@ export function ProjectsGrid({ projects }: Props) {
     const [open, setOpen] = useState(false)
     const [pressing, setPressing] = useState(false)
 
-    const initial = projects.slice(0, INITIAL_COUNT);
-    const hasMore = projects.length > INITIAL_COUNT;
+    const pinned = projects.filter((p) => p.pinned);
+    const hasMore = projects.length > pinned.length;
 
     function handleOpen() {
         setPressing(true);
@@ -37,14 +35,14 @@ export function ProjectsGrid({ projects }: Props) {
 
     return (
     <>
-      {/* ── Initial 6-card grid ── */}
+      {/* ── Pinned projects grid ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {initial.map((project) => (
+        {pinned.map((project) => (
           <ProjectCard key={project.project_id} project={project} />
         ))}
       </div>
 
-      {/* ── "View all" button ── */}
+      {/* ── "View all" button */}
       {hasMore && (
         <div className="flex justify-center pt-6">
           <Button
@@ -63,13 +61,13 @@ export function ProjectsGrid({ projects }: Props) {
         </div>
       )}
 
-      {/* ── Modal with full project archive ── */}
+      {/* ── Modal: all projects sorted by date ── */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-[1200px] w-[calc(100vw-2rem)] max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold tracking-tight">All Projects</DialogTitle>
             <DialogDescription>
-              {projects.length} projects
+              {projects.length} projects · sorted by date
             </DialogDescription>
           </DialogHeader>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
